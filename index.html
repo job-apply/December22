@@ -38,6 +38,85 @@
             min-height: 100vh;
         }
         
+        /* Login Modal Styles */
+        .login-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .login-modal.active {
+            display: flex;
+        }
+        
+        .login-form {
+            background: white;
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+        
+        .login-form h2 {
+            margin-bottom: 20px;
+            color: var(--primary-dark);
+        }
+        
+        .login-form input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: var(--radius);
+        }
+        
+        .login-form button {
+            width: 100%;
+            padding: 12px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+        
+        .back-button {
+            background: var(--light) !important;
+            color: var(--dark) !important;
+            border: 1px solid #ddd !important;
+        }
+        
+        .back-button:hover {
+            background: #e9ecef !important;
+        }
+        
+        .login-error {
+            color: var(--danger);
+            margin-top: 10px;
+            display: none;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .button-group button {
+            flex: 1;
+        }
+        
         header {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             padding: 25px;
@@ -86,6 +165,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            cursor: pointer;
         }
         
         nav a:hover {
@@ -373,6 +453,40 @@
             margin: 0 auto 30px;
         }
         
+        .location-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0;
+            font-weight: 600;
+        }
+        
+        .location-info i {
+            color: var(--primary);
+        }
+        
+        .applicant-data {
+            background: var(--light);
+            padding: 20px;
+            border-radius: var(--radius);
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .applicant-data h4 {
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+        }
+        
+        .applicant-data pre {
+            background: white;
+            padding: 15px;
+            border-radius: var(--radius);
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -426,16 +540,37 @@
 </head>
 <body>
 
+<!-- Login Modal -->
+<div id="loginModal" class="login-modal">
+    <div class="login-form">
+        <h2><i class="fas fa-lock"></i> Admin Access</h2>
+        <p>Enter password to access Admin Panel</p>
+        <input type="password" id="passwordInput" placeholder="Enter admin password">
+        
+        <div class="button-group">
+            <button onclick="checkPassword()">Access Admin</button>
+            <button class="back-button" onclick="goBack()">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+        </div>
+        
+        <div id="loginError" class="login-error">
+            <i class="fas fa-exclamation-circle"></i> Incorrect password
+        </div>
+    </div>
+</div>
+
 <header>
     <h1>December Weekly-Pay Job Finder</h1>
     <p class="deadline"><i class="fas fa-clock"></i> Applications close next week Monday</p>
 </header>
 
 <nav>
-    <a href="#home" onclick="showTab('home')"><i class="fas fa-home"></i> Home</a>
-    <a href="#search" onclick="showTab('search')"><i class="fas fa-search"></i> Search Jobs</a>
-    <a href="#apply" onclick="showTab('apply')"><i class="fas fa-file-alt"></i> Apply</a>
-    <a href="#deposit" onclick="showTab('deposit')"><i class="fas fa-money-bill-wave"></i> Deposit</a>
+    <a onclick="showTab('home')"><i class="fas fa-home"></i> Home</a>
+    <a onclick="showTab('search')"><i class="fas fa-search"></i> Search Jobs</a>
+    <a onclick="showTab('apply')"><i class="fas fa-file-alt"></i> Apply</a>
+    <a onclick="showTab('deposit')"><i class="fas fa-money-bill-wave"></i> Deposit</a>
+    <a onclick="showAdminTab()"><i class="fas fa-cog"></i> Admin</a>
 </nav>
 
 <div class="container">
@@ -444,13 +579,30 @@
         <div class="hero-section">
             <h2>Find Your Perfect December Job</h2>
             <p>Earn R1250 - R2000 per week with guaranteed weekly payments at top retailers</p>
-            <button onclick="showTab('search')"><i class="fas fa-search"></i> Start Job Search</button>
+            
+            <div class="location-info">
+                <i class="fas fa-map-marker-alt"></i>
+                <span id="location-text">Finding nearby stores in your area...</span>
+            </div>
+            
+            <button onclick="showTab('search')"><i class="fas fa-search"></i> Find Nearby Jobs</button>
         </div>
         
         <div class="tab-content">
             <div class="card">
-                <h3>Why Choose Our Platform?</h3>
-                <p>We connect job seekers with reputable employers offering seasonal positions with guaranteed weekly payments during the busy December period.</p>
+                <h3>Work at Stores Near You</h3>
+                <p>We match you with December seasonal positions at major retailers in your local area. No long commutes - find work close to home!</p>
+                
+                <div class="info-box">
+                    <h4><i class="fas fa-envelope"></i> What Happens After You Apply?</h4>
+                    <p>After completing your R500 deposit, you'll receive:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>Confirmation Email:</strong> Immediate receipt of your application</li>
+                        <li><strong>Interview Details:</strong> Sent within 24 hours with store location and time</li>
+                        <li><strong>Required Documents:</strong> List of what to bring to your interview</li>
+                        <li><strong>Store Contact:</strong> Manager details and store location</li>
+                    </ul>
+                </div>
                 
                 <div class="stats">
                     <div class="stat-box">
@@ -463,7 +615,7 @@
                     </div>
                     <div class="stat-box">
                         <div class="stat-number">24h</div>
-                        <div class="stat-label">Application Processing</div>
+                        <div class="stat-label">Response Time</div>
                     </div>
                 </div>
                 
@@ -473,23 +625,13 @@
                         <span>Weekly Pay: R1250 - R2000</span>
                     </div>
                     <div class="benefit">
-                        <i class="fas fa-calendar-alt" style="color: var(--primary);"></i>
-                        <span>December Positions</span>
+                        <i class="fas fa-map-marker-alt" style="color: var(--primary);"></i>
+                        <span>Stores Near You</span>
                     </div>
                     <div class="benefit">
-                        <i class="fas fa-briefcase" style="color: var(--warning);"></i>
-                        <span>Multiple Industries</span>
+                        <i class="fas fa-calendar-alt" style="color: var(--warning);"></i>
+                        <span>December Positions</span>
                     </div>
-                </div>
-                
-                <div class="success">
-                    <h4><i class="fas fa-check-circle"></i> Why Choose Us?</h4>
-                    <ul style="margin-left: 20px; margin-top: 10px;">
-                        <li>Verified employers with weekly payment systems</li>
-                        <li>Simple application process</li>
-                        <li>No hidden fees or charges</li>
-                        <li>Secure platform for your information</li>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -497,16 +639,20 @@
 
     <!-- SEARCH TAB -->
     <div id="search" class="tab">
-        <h2 class="tab-title">Available Jobs</h2>
+        <h2 class="tab-title">Available Jobs Near You</h2>
         <div class="tab-content">
             <div class="card">
+                <div class="location-info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span id="search-location">Finding your location...</span>
+                </div>
                 <p>Click the button below to search for available December weekly-pay jobs in your area.</p>
-                <p><strong>All positions pay R1250 - R2000 per week</strong></p>
-                <button onclick="randomizeJobs()"><i class="fas fa-sync-alt"></i> Search Available Jobs</button>
+                <p><strong>All positions pay R1250 - R2000 per week at stores near you</strong></p>
+                <button onclick="randomizeJobs()"><i class="fas fa-sync-alt"></i> Search Nearby Jobs</button>
             </div>
             
             <div class="store-box" id="results" style="margin-top:25px;">
-                <p>No jobs searched yet. Click the "Search Available Jobs" button to see available positions.</p>
+                <p>No jobs searched yet. Click the "Search Nearby Jobs" button to see available positions.</p>
             </div>
         </div>
     </div>
@@ -518,7 +664,7 @@
             <div class="card">
                 <div class="info-box">
                     <h4><i class="fas fa-info-circle"></i> Application Process</h4>
-                    <p>Complete this form to apply for available positions. Your application will be processed within 24 hours.</p>
+                    <p>Complete this form to apply for available positions at stores in your area. Your application will be processed within 24 hours.</p>
                     <p style="margin-top: 10px;"><strong>Note:</strong> A R500 application deposit is required to secure your position.</p>
                 </div>
                 
@@ -555,7 +701,7 @@
                 
                 <div class="form-group">
                     <label>Upload ID (Required for verification)</label>
-                    <input type="file" style="margin-top:8px;">
+                    <input type="file" id="id-upload" style="margin-top:8px;">
                     <small style="display:block; margin-top:5px; color:#666;">Accepted formats: JPG, PNG, PDF (max 5MB)</small>
                 </div>
                 
@@ -577,7 +723,7 @@
                 <div class="info-box">
                     <h4><i class="fas fa-info-circle"></i> Application Fee</h4>
                     <p>This R500 deposit covers administrative costs and guarantees your application is processed within 24 hours.</p>
-                    <p style="margin-top: 10px;"><strong>Refund Policy:</strong> Your deposit will be refunded after you complete your first week of work.</p>
+                    <p style="margin-top: 10px;"><strong>What happens next:</strong> After payment, you'll receive an email confirmation with interview details at your nearest store location.</p>
                 </div>
                 
                 <div class="payment-info">
@@ -618,93 +764,205 @@
             </div>
         </div>
     </div>
+
+    <!-- ADMIN TAB -->
+    <div id="admin" class="tab">
+        <h2 class="tab-title">Admin Panel</h2>
+        <div class="tab-content">
+            <div class="card">
+                <h3>Applicant Information</h3>
+                <p>View and manage applicant data collected through the application process.</p>
+                
+                <div class="applicant-data">
+                    <h4><i class="fas fa-database"></i> How to Retrieve Applicant Data</h4>
+                    <p>In a real application, you would:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Store data in a database (MySQL, MongoDB, etc.)</li>
+                        <li>Use server-side processing (PHP, Node.js, Python)</li>
+                        <li>Create an admin dashboard with login</li>
+                        <li>Export data to CSV/Excel for review</li>
+                    </ul>
+                    
+                    <h4 style="margin-top: 20px;">Current Session Data</h4>
+                    <p>For demonstration, here's the data from the current application:</p>
+                    <pre id="applicant-data-display">No application data submitted yet.</pre>
+                    
+                    <button onclick="viewApplicantData()" style="background: var(--primary);">
+                        <i class="fas fa-eye"></i> View Current Applicant Data
+                    </button>
+                </div>
+                
+                <div class="info-box">
+                    <h4><i class="fas fa-code"></i> Backend Implementation</h4>
+                    <p>To actually collect and store data, you would need:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>Server:</strong> Node.js, PHP, Python Flask/Django</li>
+                        <li><strong>Database:</strong> MySQL, PostgreSQL, MongoDB</li>
+                        <li><strong>File Storage:</strong> For uploaded documents</li>
+                        <li><strong>Email Service:</strong> SendGrid, Mailgun for notifications</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
-// TAB SWITCHER
-function showTab(tab) {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    document.getElementById(tab).classList.add('active');
+// PASSWORD PROTECTION
+const CORRECT_PASSWORD = "admin123"; // Change this to your desired password
+let isAuthenticated = false;
+
+function showAdminTab() {
+    if (!isAuthenticated) {
+        document.getElementById('loginModal').classList.add('active');
+        document.getElementById('passwordInput').focus();
+    } else {
+        showTab('admin');
+    }
 }
 
-// STORE DATA WITH BASE64 ENCODED LOGOS
+function checkPassword() {
+    const passwordInput = document.getElementById('passwordInput').value;
+    const loginError = document.getElementById('loginError');
+    
+    if (passwordInput === CORRECT_PASSWORD) {
+        isAuthenticated = true;
+        document.getElementById('loginModal').classList.remove('active');
+        document.getElementById('passwordInput').value = '';
+        loginError.style.display = 'none';
+        showTab('admin');
+    } else {
+        loginError.style.display = 'block';
+        document.getElementById('passwordInput').value = '';
+        document.getElementById('passwordInput').focus();
+    }
+}
+
+function goBack() {
+    document.getElementById('loginModal').classList.remove('active');
+    document.getElementById('passwordInput').value = '';
+    document.getElementById('loginError').style.display = 'none';
+    showTab('home');
+}
+
+// Allow pressing Enter to submit password
+document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        checkPassword();
+    }
+});
+
+// STORE DATA WITH LOCAL IMAGES
 const storeData = [
     {
         name: 'Clicks', 
-        img: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCA1MCA1MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiByeD0iOCIgZmlsbD0iI0U2MDA2MyIvPgo8dGV4dCB4PSIyNSIgeT0iMzAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkNsaWNrczwvdGV4dD4KPC9zdmc+', 
+        img: 'images/clicks.png', 
         pay: 'R1400-1800/week'
     },
     {
         name: 'McDonald\'s', 
-        img: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCA1MCA1MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiByeD0iOCIgZmlsbD0iI0ZDMDAxNyIvPgo8cGF0aCBkPSJNMzUgMTVIMTVDMTIuMjQgMTUgMTAgMTcuMjQgMTAgMjBWMzBDMTAgMzIuNzYgMTIuMjQgMzUgMTUgMzVIMzVDMzcuNzYgMzUgNDAgMzIuNzYgNDAgMzBWMjBDNDAgMTcuMjQgMzcuNzYgMTUgMzUgMTVaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4=', 
+        img: 'images/mcdonald.jpeg', 
         pay: 'R1350-1750/week'
     },
     {
         name: 'KFC', 
-        img: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCA1MCA1MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiByeD0iOCIgZmlsbD0iI0ZGMDAwMCIvPgo8dGV4dCB4PSIyNSIgeT0iMzAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNiIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPktGQzwvdGV4dD4KPC9zdmc+', 
+        img: 'images/KFC.png', 
         pay: 'R1400-1800/week'
     },
     {
         name: 'Pick n Pay', 
-        img: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCA1MCA1MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiByeD0iOCIgZmlsbD0iIzAwNzRDRCIvPgo8dGV4dCB4PSIyNSIgeT0iMzAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlBpY2tuUGF5PC90ZXh0Pgo8L3N2Zz4=', 
+        img: 'images/Pick N Pay.png', 
         pay: 'R1400-1800/week'
     },
     {
         name: 'Pep Stores', 
-        img: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCA1MCA1MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiByeD0iOCIgZmlsbD0iI0ZGMDAwMCIvPgo8dGV4dCB4PSIyNSIgeT0iMzAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlBlcCBTdG9yZXM8L3RleHQ+Cjwvc3ZnPg==', 
+        img: 'images/pep.png', 
         pay: 'R1300-1700/week'
     },
     {
         name: 'Shoprite', 
-        img: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCA1MCA1MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiByeD0iOCIgZmlsbD0iI0ZGMDAwMCIvPgo8dGV4dCB4PSIyNSIgeT0iMzAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlNob3ByaXRlPC90ZXh0Pgo8L3N2Zz4=', 
+        img: 'images/shoprite.png', 
         pay: 'R1250-1650/week'
     },
     {
         name: 'Mr Price', 
-        img: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCA1MCA1MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiByeD0iOCIgZmlsbD0iI0ZGMDAwMCIvPgo8dGV4dCB4PSIyNSIgeT0iMzAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk1yIFByaWNlPC90ZXh0Pgo8L3N2Zz4=', 
+        img: 'images/mrprice.png', 
         pay: 'R1350-1750/week'
     },
     {
         name: 'Checkers', 
-        img: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCA1MCA1MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiByeD0iOCIgZmlsbD0iI0ZGNjAwMCIvPgo8dGV4dCB4PSIyNSIgeT0iMzAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkNoZWNrZXJzPC90ZXh0Pgo8L3N2Zz4=', 
-        pay: 'R1350-1750/week'
-    },
-    {
-        name: 'Woolworths', 
-        img: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCA1MCA1MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiByeD0iOCIgZmlsbD0iIzAwN0E0QiIvPgo8dGV4dCB4PSIyNSIgeT0iMzAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPldvb2xpZXM8L3RleHQ+Cjwvc3ZnPg==', 
-        pay: 'R1500-2000/week'
-    },
-    {
-        name: 'SPAR', 
-        img: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCA1MCA1MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiByeD0iOCIgZmlsbD0iI0YwMDAwMCIvPgo8dGV4dCB4PSIyNSIgeT0iMzAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlNQQVI8L3RleHQ+Cjwvc3ZnPg==', 
-        pay: 'R1300-1700/week'
+        img: 'images/checkers.png', 
+        pay: 'R1400-1800/week'
     },
     {
         name: 'Dis-Chem', 
-        img: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCA1MCA1MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiByeD0iOCIgZmlsbD0iIzAwN0ZGRiIvPgo8dGV4dCB4PSIyNSIgeT0iMzAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkRpc0NoZW08L3RleHQ+Cjwvc3ZnPg==', 
-        pay: 'R1450-1850/week'
-    },
-    {
-        name: 'Game', 
-        img: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCA1MCA1MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiByeD0iOCIgZmlsbD0iIzAwN0ZGRiIvPgo8dGV4dCB4PSIyNSIgeT0iMzAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkdhbWU8L3RleHQ+Cjwvc3ZnPg==', 
+        img: 'images/dischem.jpeg', 
         pay: 'R1450-1850/week'
     },
     {
         name: 'Edgars', 
-        img: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCA1MCA1MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiByeD0iOCIgZmlsbD0iIzAwN0ZGRiIvPgo8dGV4dCB4PSIyNSIgeT0iMzAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkVkZ2FyczwvdGV4dD4KPC9zdmc+', 
-        pay: 'R1400-1800/week'
+        img: 'images/edgars.png', 
+        pay: 'R1300-1700/week'
+    },
+    {
+        name: 'Spar', 
+        img: 'images/spar.png', 
+        pay: 'R1350-1750/week'
     },
     {
         name: 'Truworths', 
-        img: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCA1MCA1MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiByeD0iOCIgZmlsbD0iIzAwMDA2NiIvPgo8dGV4dCB4PSIyNSIgeT0iMzAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlRydXdvcnRoczwvdGV4dD4KPC9zdmc+', 
-        pay: 'R1500-2000/week'
+        img: 'images/truworths.png', 
+        pay: 'R1400-1800/week'
     },
     {
-        name: 'Foschini', 
-        img: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCA1MCA1MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiByeD0iOCIgZmlsbD0iIzAwMDA2NiIvPgo8dGV4dCB4PSIyNSIgeT0iMzAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkZvc2NoaW5pPC90ZXh0Pgo8L3N2Zz4=', 
-        pay: 'R1500-2000/week'
+        name: 'Wimpy', 
+        img: 'images/wimpy.png', 
+        pay: 'R1300-1700/week'
     }
 ];
+
+// Store applicant data
+let applicantData = null;
+
+// TAB SWITCHER - FIXED
+function showTab(tab) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(tab).classList.add('active');
+    
+    // Update location display when switching to search tab
+    if (tab === 'search') {
+        document.getElementById('search-location').textContent = document.getElementById('location-text').textContent;
+    }
+}
+
+// GET USER LOCATION
+function getUserLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            function(position) {
+                const lat = position.coords.latitude;
+                const lng = position.coords.longitude;
+                
+                // Simulate getting location name (in real app, use reverse geocoding API)
+                const locations = [
+                    "Johannesburg Central", "Cape Town CBD", "Durban North", 
+                    "Pretoria East", "Port Elizabeth", "Bloemfontein"
+                ];
+                const randomLocation = locations[Math.floor(Math.random() * locations.length)];
+                document.getElementById('location-text').textContent = `Stores near ${randomLocation}`;
+                document.getElementById('search-location').textContent = `Stores near ${randomLocation}`;
+            },
+            function(error) {
+                // If location access denied, use a default location
+                document.getElementById('location-text').textContent = "Stores in major cities across South Africa";
+                document.getElementById('search-location').textContent = "Stores in major cities across South Africa";
+            }
+        );
+    } else {
+        document.getElementById('location-text').textContent = "Stores in major cities across South Africa";
+        document.getElementById('search-location').textContent = "Stores in major cities across South Africa";
+    }
+}
 
 // RANDOMIZE JOBS
 function randomizeJobs() {
@@ -772,6 +1030,16 @@ function goDeposit() {
         return;
     }
     
+    // Store applicant data
+    applicantData = {
+        fullname: fullname,
+        email: email,
+        phone: phone,
+        address: address,
+        position: position,
+        timestamp: new Date().toISOString()
+    };
+    
     showTab('deposit');
 }
 
@@ -789,7 +1057,7 @@ function finishApp() {
     }
     
     // Show success message
-    alert("Payment successful! Your R500 deposit has been processed.\n\nYour application has been submitted and will be processed within 24 hours.\n\nYou will receive a confirmation email shortly.");
+    alert("Payment successful! Your R500 deposit has been processed.\n\nYour application has been submitted and will be processed within 24 hours.\n\nYou will receive a confirmation email shortly with interview details at your nearest store location.");
     
     // Reset form and return to home
     document.getElementById('fullname').value = '';
@@ -804,6 +1072,21 @@ function finishApp() {
     
     showTab('home');
 }
+
+// VIEW APPLICANT DATA
+function viewApplicantData() {
+    const display = document.getElementById('applicant-data-display');
+    if (applicantData) {
+        display.textContent = JSON.stringify(applicantData, null, 2);
+    } else {
+        display.textContent = "No application data submitted yet.";
+    }
+}
+
+// Initialize location on page load
+window.addEventListener('load', function() {
+    getUserLocation();
+});
 </script>
 
 </body>
