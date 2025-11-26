@@ -19,25 +19,26 @@
             --shadow: 0 4px 12px rgba(0,0,0,0.1);
             --radius: 10px;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                        url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             color: var(--dark);
             line-height: 1.6;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
-        
+
         /* Login Modal Styles */
         .login-modal {
             display: none;
@@ -51,11 +52,11 @@
             justify-content: center;
             align-items: center;
         }
-        
-        .login-modal.active {
-            display: flex;
-        }
-        
+
+            .login-modal.active {
+                display: flex;
+            }
+
         .login-form {
             background: white;
             padding: 40px;
@@ -65,58 +66,58 @@
             max-width: 400px;
             text-align: center;
         }
-        
-        .login-form h2 {
-            margin-bottom: 20px;
-            color: var(--primary-dark);
-        }
-        
-        .login-form input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: var(--radius);
-        }
-        
-        .login-form button {
-            width: 100%;
-            padding: 12px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: var(--radius);
-            cursor: pointer;
-            margin-top: 10px;
-            font-weight: 600;
-        }
-        
+
+            .login-form h2 {
+                margin-bottom: 20px;
+                color: var(--primary-dark);
+            }
+
+            .login-form input {
+                width: 100%;
+                padding: 12px;
+                margin: 10px 0;
+                border: 1px solid #ddd;
+                border-radius: var(--radius);
+            }
+
+            .login-form button {
+                width: 100%;
+                padding: 12px;
+                background: var(--primary);
+                color: white;
+                border: none;
+                border-radius: var(--radius);
+                cursor: pointer;
+                margin-top: 10px;
+                font-weight: 600;
+            }
+
         .back-button {
             background: var(--light) !important;
             color: var(--dark) !important;
             border: 1px solid #ddd !important;
         }
-        
-        .back-button:hover {
-            background: #e9ecef !important;
-        }
-        
+
+            .back-button:hover {
+                background: #e9ecef !important;
+            }
+
         .login-error {
             color: var(--danger);
             margin-top: 10px;
             display: none;
         }
-        
+
         .button-group {
             display: flex;
             gap: 10px;
             margin-top: 15px;
         }
-        
-        .button-group button {
-            flex: 1;
-        }
-        
+
+            .button-group button {
+                flex: 1;
+            }
+
         header {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             padding: 25px;
@@ -126,12 +127,12 @@
             position: relative;
             z-index: 10;
         }
-        
-        header h1 {
-            margin-bottom: 10px;
-            font-size: 2.2rem;
-        }
-        
+
+            header h1 {
+                margin-bottom: 10px;
+                font-size: 2.2rem;
+            }
+
         .deadline {
             background-color: var(--warning);
             color: var(--dark);
@@ -141,7 +142,7 @@
             display: inline-block;
             margin-top: 10px;
         }
-        
+
         nav {
             background: var(--primary-dark);
             padding: 12px;
@@ -153,43 +154,44 @@
             position: relative;
             z-index: 10;
         }
-        
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            padding: 10px 20px;
-            background: var(--primary);
-            border-radius: var(--radius);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-        }
-        
-        nav a:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-        
+
+            nav a {
+                color: white;
+                text-decoration: none;
+                font-weight: 600;
+                padding: 10px 20px;
+                background: var(--primary);
+                border-radius: var(--radius);
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                cursor: pointer;
+            }
+
+                nav a:hover {
+                    background: var(--primary-dark);
+                    transform: translateY(-2px);
+                }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 30px 20px;
             position: relative;
             z-index: 5;
+            flex: 1;
         }
-        
+
         .tab {
             display: none;
             animation: fadeIn 0.5s ease;
         }
-        
-        .tab.active {
-            display: block;
-        }
-        
+
+            .tab.active {
+                display: block;
+            }
+
         .tab-title {
             font-size: 2rem;
             font-weight: 700;
@@ -198,13 +200,13 @@
             text-align: center;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
         }
-        
+
         .tab-content {
             max-width: 800px;
             margin: 0 auto;
             text-align: center;
         }
-        
+
         .card {
             background: rgba(255, 255, 255, 0.95);
             padding: 30px;
@@ -214,7 +216,7 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        
+
         .store-box {
             background: rgba(255, 255, 255, 0.95);
             padding: 25px;
@@ -226,7 +228,7 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        
+
         .store {
             display: flex;
             align-items: center;
@@ -238,13 +240,13 @@
             border: 1px solid #ddd;
             transition: all 0.3s ease;
         }
-        
-        .store:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            background: white;
-        }
-        
+
+            .store:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                background: white;
+            }
+
         .store-logo {
             width: 50px;
             height: 50px;
@@ -257,47 +259,47 @@
             justify-content: center;
             overflow: hidden;
         }
-        
-        .store-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-        
+
+            .store-logo img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+
         .store-info {
             display: flex;
             align-items: center;
             gap: 15px;
         }
-        
+
         .store-name {
             font-weight: bold;
             font-size: 1.1rem;
         }
-        
+
         .pay-range {
             font-size: 0.9rem;
             color: var(--secondary);
             font-weight: 600;
         }
-        
+
         .status {
             font-weight: bold;
             padding: 5px 12px;
             border-radius: 20px;
             font-size: 0.9rem;
         }
-        
+
         .active {
             background-color: rgba(25, 135, 84, 0.1);
             color: var(--secondary);
         }
-        
+
         .inactive {
             background-color: rgba(220, 53, 69, 0.1);
             color: var(--danger);
         }
-        
+
         button {
             padding: 14px 28px;
             background: var(--secondary);
@@ -314,13 +316,13 @@
             align-items: center;
             gap: 8px;
         }
-        
-        button:hover {
-            background: var(--secondary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-        }
-        
+
+            button:hover {
+                background: var(--secondary-dark);
+                transform: translateY(-2px);
+                box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            }
+
         input, textarea, select {
             width: 100%;
             padding: 12px 15px;
@@ -331,25 +333,25 @@
             box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
         }
-        
-        input:focus, textarea:focus, select:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
-        }
-        
+
+            input:focus, textarea:focus, select:focus {
+                outline: none;
+                border-color: var(--primary);
+                box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
+            }
+
         .form-group {
             margin-bottom: 20px;
             text-align: left;
         }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--primary-dark);
-        }
-        
+
+            .form-group label {
+                display: block;
+                margin-bottom: 8px;
+                font-weight: 600;
+                color: var(--primary-dark);
+            }
+
         .info-box {
             background-color: rgba(13, 110, 253, 0.1);
             border-left: 4px solid var(--primary);
@@ -358,7 +360,7 @@
             border-radius: 4px;
             text-align: left;
         }
-        
+
         .success {
             background-color: rgba(25, 135, 84, 0.2);
             border-left: 4px solid var(--secondary);
@@ -367,21 +369,21 @@
             border-radius: 4px;
             text-align: left;
         }
-        
+
         .payment-info {
             background-color: var(--light);
             padding: 20px;
             border-radius: var(--radius);
             margin: 20px 0;
         }
-        
+
         .payment-amount {
             font-size: 2rem;
             font-weight: bold;
             color: var(--primary-dark);
             margin: 15px 0;
         }
-        
+
         .stats {
             display: flex;
             justify-content: space-around;
@@ -389,7 +391,7 @@
             flex-wrap: wrap;
             gap: 20px;
         }
-        
+
         .stat-box {
             background: white;
             padding: 20px;
@@ -399,19 +401,19 @@
             flex: 1;
             min-width: 150px;
         }
-        
+
         .stat-number {
             font-size: 2.5rem;
             font-weight: bold;
             color: var(--primary);
         }
-        
+
         .stat-label {
             font-size: 0.9rem;
             color: #666;
             margin-top: 5px;
         }
-        
+
         .job-benefits {
             display: flex;
             flex-wrap: wrap;
@@ -419,7 +421,7 @@
             margin: 20px 0;
             justify-content: center;
         }
-        
+
         .benefit {
             display: flex;
             align-items: center;
@@ -428,10 +430,9 @@
             padding: 10px 15px;
             border-radius: var(--radius);
         }
-        
+
         .hero-section {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                        url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
             background-size: cover;
             background-position: center;
             padding: 80px 20px;
@@ -440,19 +441,19 @@
             border-radius: var(--radius);
             margin-bottom: 30px;
         }
-        
-        .hero-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-        }
-        
-        .hero-section p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto 30px;
-        }
-        
+
+            .hero-section h2 {
+                font-size: 2.5rem;
+                margin-bottom: 20px;
+                text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            }
+
+            .hero-section p {
+                font-size: 1.2rem;
+                max-width: 600px;
+                margin: 0 auto 30px;
+            }
+
         .location-info {
             display: flex;
             align-items: center;
@@ -461,11 +462,11 @@
             margin: 15px 0;
             font-weight: 600;
         }
-        
-        .location-info i {
-            color: var(--primary);
-        }
-        
+
+            .location-info i {
+                color: var(--primary);
+            }
+
         .applicant-data {
             background: var(--light);
             padding: 20px;
@@ -473,621 +474,784 @@
             margin: 20px 0;
             text-align: left;
         }
-        
-        .applicant-data h4 {
-            margin-bottom: 15px;
-            color: var(--primary-dark);
-        }
-        
-        .applicant-data pre {
-            background: white;
-            padding: 15px;
+
+            .applicant-data h4 {
+                margin-bottom: 15px;
+                color: var(--primary-dark);
+            }
+
+            .applicant-data pre {
+                background: white;
+                padding: 15px;
+                border-radius: var(--radius);
+                overflow-x: auto;
+                font-size: 14px;
+            }
+
+        .whatsapp-section {
+            background: rgba(37, 211, 102, 0.1);
+            border: 2px solid #25D366;
+            padding: 25px;
             border-radius: var(--radius);
-            overflow-x: auto;
-            font-size: 14px;
+            margin: 25px 0;
+            text-align: center;
         }
-        
+
+            .whatsapp-section h3 {
+                color: #075E54;
+                margin-bottom: 15px;
+            }
+
+        .whatsapp-button {
+            background: #25D366;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+
+            .whatsapp-button:hover {
+                background: #128C7E;
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            }
+
+        .payment-proof-section {
+            background: rgba(255, 193, 7, 0.1);
+            border: 2px solid var(--warning);
+            padding: 25px;
+            border-radius: var(--radius);
+            margin: 25px 0;
+        }
+
+            .payment-proof-section h3 {
+                color: var(--warning);
+                margin-bottom: 15px;
+                text-align: center;
+            }
+
+        /* Footer Styles */
+        footer {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+        }
+
+            .contact-item i {
+                font-size: 1.2rem;
+                color: var(--warning);
+            }
+
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 20px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
+
         @media (max-width: 768px) {
             nav {
                 gap: 10px;
             }
-            
-            nav a {
-                padding: 8px 15px;
-                font-size: 0.9rem;
-            }
-            
+
+                nav a {
+                    padding: 8px 15px;
+                    font-size: 0.9rem;
+                }
+
             .container {
                 padding: 20px 15px;
             }
-            
+
             .tab-title {
                 font-size: 1.6rem;
             }
-            
+
             .store-box {
                 padding: 20px;
             }
-            
+
             .store {
                 flex-direction: column;
                 gap: 10px;
                 text-align: center;
             }
-            
+
             .store-info {
                 flex-direction: column;
             }
-            
+
             .stats {
                 flex-direction: column;
             }
-            
+
             .hero-section {
                 padding: 50px 20px;
             }
-            
-            .hero-section h2 {
-                font-size: 2rem;
+
+                .hero-section h2 {
+                    font-size: 2rem;
+                }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .contact-item {
+                justify-content: center;
             }
         }
     </style>
 </head>
 <body>
 
-<!-- Login Modal -->
-<div id="loginModal" class="login-modal">
-    <div class="login-form">
-        <h2><i class="fas fa-lock"></i> Admin Access</h2>
-        <p>Enter password to access Admin Panel</p>
-        <input type="password" id="passwordInput" placeholder="Enter admin password">
-        
-        <div class="button-group">
-            <button onclick="checkPassword()">Access Admin</button>
-            <button class="back-button" onclick="goBack()">
-                <i class="fas fa-arrow-left"></i> Back
-            </button>
-        </div>
-        
-        <div id="loginError" class="login-error">
-            <i class="fas fa-exclamation-circle"></i> Incorrect password
-        </div>
-    </div>
-</div>
+    <!-- Login Modal -->
+    <div id="loginModal" class="login-modal">
+        <div class="login-form">
+            <h2><i class="fas fa-lock"></i> Admin Access</h2>
+            <p>Enter password to access Admin Panel</p>
+            <input type="password" id="passwordInput" placeholder="Enter admin password">
 
-<header>
-    <h1>December Weekly-Pay Job Finder</h1>
-    <p class="deadline"><i class="fas fa-clock"></i> Applications close next week Monday</p>
-</header>
-
-<nav>
-    <a onclick="showTab('home')"><i class="fas fa-home"></i> Home</a>
-    <a onclick="showTab('search')"><i class="fas fa-search"></i> Search Jobs</a>
-    <a onclick="showTab('apply')"><i class="fas fa-file-alt"></i> Apply</a>
-    <a onclick="showTab('deposit')"><i class="fas fa-money-bill-wave"></i> Deposit</a>
-    <a onclick="showAdminTab()"><i class="fas fa-cog"></i> Admin</a>
-</nav>
-
-<div class="container">
-    <!-- HOME TAB -->
-    <div id="home" class="tab active">
-        <div class="hero-section">
-            <h2>Find Your Perfect December Job</h2>
-            <p>Earn R1250 - R2000 per week with guaranteed weekly payments at top retailers</p>
-            
-            <div class="location-info">
-                <i class="fas fa-map-marker-alt"></i>
-                <span id="location-text">Finding nearby stores in your area...</span>
+            <div class="button-group">
+                <button onclick="checkPassword()">Access Admin</button>
+                <button class="back-button" onclick="goBack()">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
             </div>
-            
-            <button onclick="showTab('search')"><i class="fas fa-search"></i> Find Nearby Jobs</button>
-        </div>
-        
-        <div class="tab-content">
-            <div class="card">
-                <h3>Work at Stores Near You</h3>
-                <p>We match you with December seasonal positions at major retailers in your local area. No long commutes - find work close to home!</p>
-                
-                <div class="info-box">
-                    <h4><i class="fas fa-envelope"></i> What Happens After You Apply?</h4>
-                    <p>After completing your R500 deposit, you'll receive:</p>
-                    <ul style="margin-left: 20px; margin-top: 10px;">
-                        <li><strong>Confirmation Email:</strong> Immediate receipt of your application</li>
-                        <li><strong>Interview Details:</strong> Sent within 24 hours with store location and time</li>
-                        <li><strong>Required Documents:</strong> List of what to bring to your interview</li>
-                        <li><strong>Store Contact:</strong> Manager details and store location</li>
-                    </ul>
-                </div>
-                
-                <div class="stats">
-                    <div class="stat-box">
-                        <div class="stat-number">R1250-2000</div>
-                        <div class="stat-label">Weekly Pay</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-number">15+</div>
-                        <div class="stat-label">Major Retailers</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-number">24h</div>
-                        <div class="stat-label">Response Time</div>
-                    </div>
-                </div>
-                
-                <div class="job-benefits">
-                    <div class="benefit">
-                        <i class="fas fa-money-bill-wave" style="color: var(--secondary);"></i>
-                        <span>Weekly Pay: R1250 - R2000</span>
-                    </div>
-                    <div class="benefit">
-                        <i class="fas fa-map-marker-alt" style="color: var(--primary);"></i>
-                        <span>Stores Near You</span>
-                    </div>
-                    <div class="benefit">
-                        <i class="fas fa-calendar-alt" style="color: var(--warning);"></i>
-                        <span>December Positions</span>
-                    </div>
-                </div>
+
+            <div id="loginError" class="login-error">
+                <i class="fas fa-exclamation-circle"></i> Incorrect password
             </div>
         </div>
     </div>
 
-    <!-- SEARCH TAB -->
-    <div id="search" class="tab">
-        <h2 class="tab-title">Available Jobs Near You</h2>
-        <div class="tab-content">
-            <div class="card">
+    <header>
+        <h1>December Weekly-Pay Job Finder</h1>
+        <p class="deadline"><i class="fas fa-clock"></i> Applications close next week Monday</p>
+    </header>
+
+    <nav>
+        <a onclick="showTab('home')"><i class="fas fa-home"></i> Home</a>
+        <a onclick="showTab('search')"><i class="fas fa-search"></i> Search Jobs</a>
+        <a onclick="showTab('apply')"><i class="fas fa-file-alt"></i> Apply</a>
+        <a onclick="showTab('payment-proof')"><i class="fas fa-receipt"></i> Submit Payment Proof</a>
+        <a onclick="showAdminTab()"><i class="fas fa-cog"></i> Admin</a>
+    </nav>
+
+    <div class="container">
+        <!-- HOME TAB -->
+        <div id="home" class="tab active">
+            <div class="hero-section">
+                <h2>Find Your Perfect December Job</h2>
+                <p>Earn R1250 - R2000 per week with guaranteed weekly payments at top retailers</p>
+
                 <div class="location-info">
                     <i class="fas fa-map-marker-alt"></i>
-                    <span id="search-location">Finding your location...</span>
+                    <span id="location-text">Finding nearby stores in your area...</span>
                 </div>
-                <p>Click the button below to search for available December weekly-pay jobs in your area.</p>
-                <p><strong>All positions pay R1250 - R2000 per week at stores near you</strong></p>
-                <button onclick="randomizeJobs()"><i class="fas fa-sync-alt"></i> Search Nearby Jobs</button>
-            </div>
-            
-            <div class="store-box" id="results" style="margin-top:25px;">
-                <p>No jobs searched yet. Click the "Search Nearby Jobs" button to see available positions.</p>
-            </div>
-        </div>
-    </div>
 
-    <!-- APPLY TAB -->
-    <div id="apply" class="tab">
-        <h2 class="tab-title">Job Application</h2>
-        <div class="tab-content">
-            <div class="card">
-                <div class="info-box">
-                    <h4><i class="fas fa-info-circle"></i> Application Process</h4>
-                    <p>Complete this form to apply for available positions at stores in your area. Your application will be processed within 24 hours.</p>
-                    <p style="margin-top: 10px;"><strong>Note:</strong> A R500 application deposit is required to secure your position.</p>
-                </div>
-                
-                <div class="form-group">
-                    <label for="fullname">Full Name</label>
-                    <input type="text" id="fullname" placeholder="Enter your full name">
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" placeholder="Enter your email">
-                </div>
-                
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" placeholder="Enter your phone number">
-                </div>
-                
-                <div class="form-group">
-                    <label for="address">Home Address</label>
-                    <textarea id="address" placeholder="Enter your home address" rows="3"></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="position">Preferred Position</label>
-                    <select id="position">
-                        <option value="">Select a position</option>
-                        <option value="retail">Retail Assistant (R1250-1700/week)</option>
-                        <option value="warehouse">Warehouse Worker (R1500-2000/week)</option>
-                        <option value="hospitality">Hospitality Staff (R1300-1800/week)</option>
-                        <option value="delivery">Delivery Driver (R1400-1900/week)</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label>Upload ID (Required for verification)</label>
-                    <input type="file" id="id-upload" style="margin-top:8px;">
-                    <small style="display:block; margin-top:5px; color:#666;">Accepted formats: JPG, PNG, PDF (max 5MB)</small>
-                </div>
-                
-                <div class="info-box">
-                    <h4><i class="fas fa-money-bill-wave"></i> Application Deposit</h4>
-                    <p>A R500 deposit is required to process your application. This amount will be refunded after you complete your first week of work.</p>
-                </div>
-                
-                <button onclick="goDeposit()"><i class="fas fa-arrow-right"></i> Continue to Deposit</button>
+                <button onclick="showTab('search')"><i class="fas fa-search"></i> Find Nearby Jobs</button>
             </div>
-        </div>
-    </div>
 
-    <!-- DEPOSIT TAB -->
-    <div id="deposit" class="tab">
-        <h2 class="tab-title">Application Deposit</h2>
-        <div class="tab-content">
-            <div class="card">
-                <div class="info-box">
-                    <h4><i class="fas fa-info-circle"></i> Application Fee</h4>
-                    <p>This R500 deposit covers administrative costs and guarantees your application is processed within 24 hours.</p>
-                    <p style="margin-top: 10px;"><strong>What happens next:</strong> After payment, you'll receive an email confirmation with interview details at your nearest store location.</p>
-                </div>
-                
-                <div class="payment-info">
-                    <h3>Application Deposit</h3>
-                    <div class="payment-amount">R500</div>
-                    <p>Your payment is secured with 256-bit SSL encryption</p>
-                </div>
-                
-                <div class="form-group">
-                    <label for="card-number">Card Number</label>
-                    <input type="text" id="card-number" placeholder="1234 5678 9012 3456">
-                </div>
-                
-                <div style="display: flex; gap: 15px;">
-                    <div class="form-group" style="flex: 1;">
-                        <label for="expiry">Expiry Date</label>
-                        <input type="text" id="expiry" placeholder="MM/YY">
+            <div class="tab-content">
+                <div class="card">
+                    <h3>Work at Stores Near You</h3>
+                    <p>We match you with December seasonal positions at major retailers in your local area. No long commutes - find work close to home!</p>
+
+                    <div class="info-box">
+                        <h4><i class="fas fa-envelope"></i> What Happens After You Apply?</h4>
+                        <p>After completing your application via WhatsApp, you'll receive:</p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li><strong>Confirmation Email:</strong> Immediate receipt of your application</li>
+                            <li><strong>Interview Details:</strong> Sent within 24 hours with store location and time</li>
+                            <li><strong>Required Documents:</strong> List of what to bring to your interview</li>
+                            <li><strong>Store Contact:</strong> Manager details and store location</li>
+                        </ul>
                     </div>
-                    
-                    <div class="form-group" style="flex: 1;">
-                        <label for="cvv">CVV</label>
-                        <input type="text" id="cvv" placeholder="123">
+
+                    <div class="stats">
+                        <div class="stat-box">
+                            <div class="stat-number">R1250-2000</div>
+                            <div class="stat-label">Weekly Pay</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">Major Retailers</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">24h</div>
+                            <div class="stat-label">Response Time</div>
+                        </div>
+                    </div>
+
+                    <div class="job-benefits">
+                        <div class="benefit">
+                            <i class="fas fa-money-bill-wave" style="color: var(--secondary);"></i>
+                            <span>Weekly Pay: R1250 - R2000</span>
+                        </div>
+                        <div class="benefit">
+                            <i class="fas fa-map-marker-alt" style="color: var(--primary);"></i>
+                            <span>Stores Near You</span>
+                        </div>
+                        <div class="benefit">
+                            <i class="fas fa-calendar-alt" style="color: var(--warning);"></i>
+                            <span>December Positions</span>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="form-group">
-                    <label for="card-name">Name on Card</label>
-                    <input type="text" id="card-name" placeholder="Enter name as shown on card">
+            </div>
+        </div>
+
+        <!-- SEARCH TAB -->
+        <div id="search" class="tab">
+            <h2 class="tab-title">Available Jobs Near You</h2>
+            <div class="tab-content">
+                <div class="card">
+                    <div class="location-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span id="search-location">Finding your location...</span>
+                    </div>
+                    <p>Click the button below to search for available December weekly-pay jobs in your area.</p>
+                    <p><strong>All positions pay R1250 - R2000 per week at stores near you</strong></p>
+                    <button onclick="randomizeJobs()"><i class="fas fa-sync-alt"></i> Search Nearby Jobs</button>
                 </div>
-                
-                <button onclick="finishApp()"><i class="fas fa-lock"></i> Complete Payment</button>
-                
-                <div style="margin-top: 20px; display: flex; justify-content: center; gap: 20px;">
-                    <i class="fab fa-cc-visa fa-2x" style="color: #1a1f71;"></i>
-                    <i class="fab fa-cc-mastercard fa-2x" style="color: #eb001b;"></i>
-                    <i class="fab fa-cc-amex fa-2x" style="color: #2e77bc;"></i>
+
+                <div class="store-box" id="results" style="margin-top:25px;">
+                    <p>No jobs searched yet. Click the "Search Nearby Jobs" button to see available positions.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- APPLY TAB -->
+        <div id="apply" class="tab">
+            <h2 class="tab-title">Job Application</h2>
+            <div class="tab-content">
+                <div class="card">
+                    <div class="info-box">
+                        <h4><i class="fas fa-info-circle"></i> Application Process</h4>
+                        <p>Complete this form to apply for available positions at stores in your area. Your application will be processed within 24 hours.</p>
+                        <p style="margin-top: 10px;"><strong>Note:</strong> A R500 application deposit is required to secure your position. Payment will be made via WhatsApp after form submission.</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fullname">Full Name</label>
+                        <input type="text" id="fullname" placeholder="Enter your full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="Enter your email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="Enter your phone number">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Home Address</label>
+                        <textarea id="address" placeholder="Enter your home address" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="position">Preferred Position</label>
+                        <select id="position">
+                            <option value="">Select a position</option>
+                            <option value="retail">Retail Assistant (R1250-1700/week)</option>
+                            <option value="warehouse">Warehouse Worker (R1500-2000/week)</option>
+                            <option value="hospitality">Hospitality Staff (R1300-1800/week)</option>
+                            <option value="delivery">Delivery Driver (R1400-1900/week)</option>
+                            <option value="cashier">Cashier (R1250-1650/week)</option>
+                            <option value="stock-clerk">Stock Clerk (R1350-1750/week)</option>
+                            <option value="customer-service">Customer Service Representative (R1400-1800/week)</option>
+                            <option value="sales-associate">Sales Associate (R1300-1700/week)</option>
+                            <option value="merchandiser">Merchandiser (R1350-1750/week)</option>
+                            <option value="food-service">Food Service Worker (R1300-1700/week)</option>
+                            <option value="security">Security Personnel (R1450-1850/week)</option>
+                            <option value="cleaner">Cleaner/Maintenance (R1250-1600/week)</option>
+                            <option value="packer">Packer/Assembler (R1350-1750/week)</option>
+                            <option value="data-entry">Data Entry Clerk (R1400-1800/week)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Upload ID (Required for verification)</label>
+                        <input type="file" id="id-upload" style="margin-top:8px;">
+                        <small style="display:block; margin-top:5px; color:#666;">Accepted formats: JPG, PNG, PDF (max 5MB)</small>
+                    </div>
+
+                    <div class="info-box">
+                        <h4><i class="fas fa-money-bill-wave"></i> Application Deposit</h4>
+                        <p>A R500 deposit is required to process your application. This amount will be refunded after you complete your first week of work.</p>
+                        <p><strong>Payment will be completed via WhatsApp after you submit this application.</strong></p>
+                    </div>
+
+                    <button onclick="submitApplication()"><i class="fas fa-paper-plane"></i> Submit Application</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAYMENT PROOF TAB -->
+        <div id="payment-proof" class="tab">
+            <h2 class="tab-title">Submit Payment Proof</h2>
+            <div class="tab-content">
+                <div class="card">
+                    <div class="info-box">
+                        <h4><i class="fas fa-info-circle"></i> Payment Verification</h4>
+                        <p>If you've already made your R500 application payment via WhatsApp, please submit your proof of payment here to complete your application process.</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="applicant-name">Full Name</label>
+                        <input type="text" id="applicant-name" placeholder="Enter your full name as used in application">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="applicant-phone">Phone Number</label>
+                        <input type="tel" id="applicant-phone" placeholder="Enter your phone number">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="payment-date">Payment Date</label>
+                        <input type="date" id="payment-date">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="payment-method">Payment Method</label>
+                        <select id="payment-method">
+                            <option value="">Select payment method</option>
+                            <option value="bank-transfer">Bank Transfer</option>
+                            <option value="cash-send">Cash Send</option>
+                            <option value="e-wallet">E-Wallet</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reference-number">Reference Number</label>
+                        <input type="text" id="reference-number" placeholder="Enter payment reference number">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="payment-proof-file">Upload Proof of Payment</label>
+                        <input type="file" id="payment-proof-file" style="margin-top:8px;">
+                        <small style="display:block; margin-top:5px; color:#666;">Accepted formats: JPG, PNG, PDF (max 5MB)</small>
+                    </div>
+
+                    <button onclick="submitPaymentProof()"><i class="fas fa-check-circle"></i> Submit Payment Proof</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ADMIN TAB -->
+        <div id="admin" class="tab">
+            <h2 class="tab-title">Admin Panel</h2>
+            <div class="tab-content">
+                <div class="card">
+                    <h3>Applicant Information</h3>
+                    <p>View and manage applicant data collected through the application process.</p>
+
+                    <div class="applicant-data">
+                        <h4><i class="fas fa-database"></i> How to Retrieve Applicant Data</h4>
+                        <p>In a real application, you would:</p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>Store data in a database (MySQL, MongoDB, etc.)</li>
+                            <li>Use server-side processing (PHP, Node.js, Python)</li>
+                            <li>Create an admin dashboard with login</li>
+                            <li>Export data to CSV/Excel for review</li>
+                        </ul>
+
+                        <h4 style="margin-top: 20px;">Current Session Data</h4>
+                        <p>For demonstration, here's the data from the current application:</p>
+                        <pre id="applicant-data-display">No application data submitted yet.</pre>
+
+                        <button onclick="viewApplicantData()" style="background: var(--primary);">
+                            <i class="fas fa-eye"></i> View Current Applicant Data
+                        </button>
+                    </div>
+
+                    <div class="info-box">
+                        <h4><i class="fas fa-code"></i> Backend Implementation</h4>
+                        <p>To actually collect and store data, you would need:</p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li><strong>Server:</strong> Node.js, PHP, Python Flask/Django</li>
+                            <li><strong>Database:</strong> MySQL, PostgreSQL, MongoDB</li>
+                            <li><strong>File Storage:</strong> For uploaded documents</li>
+                            <li><strong>Email Service:</strong> SendGrid, Mailgun for notifications</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ADMIN TAB -->
-    <div id="admin" class="tab">
-        <h2 class="tab-title">Admin Panel</h2>
-        <div class="tab-content">
-            <div class="card">
-                <h3>Applicant Information</h3>
-                <p>View and manage applicant data collected through the application process.</p>
-                
-                <div class="applicant-data">
-                    <h4><i class="fas fa-database"></i> How to Retrieve Applicant Data</h4>
-                    <p>In a real application, you would:</p>
-                    <ul style="margin-left: 20px; margin-top: 10px;">
-                        <li>Store data in a database (MySQL, MongoDB, etc.)</li>
-                        <li>Use server-side processing (PHP, Node.js, Python)</li>
-                        <li>Create an admin dashboard with login</li>
-                        <li>Export data to CSV/Excel for review</li>
-                    </ul>
-                    
-                    <h4 style="margin-top: 20px;">Current Session Data</h4>
-                    <p>For demonstration, here's the data from the current application:</p>
-                    <pre id="applicant-data-display">No application data submitted yet.</pre>
-                    
-                    <button onclick="viewApplicantData()" style="background: var(--primary);">
-                        <i class="fas fa-eye"></i> View Current Applicant Data
-                    </button>
+    <!-- Footer with Contact Information -->
+    <footer>
+        <div class="footer-content">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>Phone: 084 274 5447</span>
                 </div>
-                
-                <div class="info-box">
-                    <h4><i class="fas fa-code"></i> Backend Implementation</h4>
-                    <p>To actually collect and store data, you would need:</p>
-                    <ul style="margin-left: 20px; margin-top: 10px;">
-                        <li><strong>Server:</strong> Node.js, PHP, Python Flask/Django</li>
-                        <li><strong>Database:</strong> MySQL, PostgreSQL, MongoDB</li>
-                        <li><strong>File Storage:</strong> For uploaded documents</li>
-                        <li><strong>Email Service:</strong> SendGrid, Mailgun for notifications</li>
-                    </ul>
+               
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email: sharmanemulota@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>Support: sharmanemulota@gmail.com</span>
                 </div>
             </div>
+            <div class="copyright">
+                <p>&copy; 2023 December Weekly-Pay Job Finder. All rights reserved.</p>
+            </div>
         </div>
-    </div>
-</div>
+    </footer>
 
-<script>
-// PASSWORD PROTECTION
-const CORRECT_PASSWORD = "admin123"; // Change this to your desired password
-let isAuthenticated = false;
+    <script>
+        // PASSWORD PROTECTION
+        const CORRECT_PASSWORD = "admin123"; // Change this to your desired password
+        let isAuthenticated = false;
 
-function showAdminTab() {
-    if (!isAuthenticated) {
-        document.getElementById('loginModal').classList.add('active');
-        document.getElementById('passwordInput').focus();
-    } else {
-        showTab('admin');
-    }
-}
+        function showAdminTab() {
+            if (!isAuthenticated) {
+                document.getElementById('loginModal').classList.add('active');
+                document.getElementById('passwordInput').focus();
+            } else {
+                showTab('admin');
+            }
+        }
 
-function checkPassword() {
-    const passwordInput = document.getElementById('passwordInput').value;
-    const loginError = document.getElementById('loginError');
-    
-    if (passwordInput === CORRECT_PASSWORD) {
-        isAuthenticated = true;
-        document.getElementById('loginModal').classList.remove('active');
-        document.getElementById('passwordInput').value = '';
-        loginError.style.display = 'none';
-        showTab('admin');
-    } else {
-        loginError.style.display = 'block';
-        document.getElementById('passwordInput').value = '';
-        document.getElementById('passwordInput').focus();
-    }
-}
+        function checkPassword() {
+            const passwordInput = document.getElementById('passwordInput').value;
+            const loginError = document.getElementById('loginError');
 
-function goBack() {
-    document.getElementById('loginModal').classList.remove('active');
-    document.getElementById('passwordInput').value = '';
-    document.getElementById('loginError').style.display = 'none';
-    showTab('home');
-}
+            if (passwordInput === CORRECT_PASSWORD) {
+                isAuthenticated = true;
+                document.getElementById('loginModal').classList.remove('active');
+                document.getElementById('passwordInput').value = '';
+                loginError.style.display = 'none';
+                showTab('admin');
+            } else {
+                loginError.style.display = 'block';
+                document.getElementById('passwordInput').value = '';
+                document.getElementById('passwordInput').focus();
+            }
+        }
 
-// Allow pressing Enter to submit password
-document.getElementById('passwordInput').addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') {
-        checkPassword();
-    }
-});
+        function goBack() {
+            document.getElementById('loginModal').classList.remove('active');
+            document.getElementById('passwordInput').value = '';
+            document.getElementById('loginError').style.display = 'none';
+            showTab('home');
+        }
 
-// STORE DATA WITH LOCAL IMAGES
-const storeData = [
-    {
-        name: 'Clicks', 
-        img: 'images/clicks.png', 
-        pay: 'R1400-1800/week'
-    },
-    {
-        name: 'McDonald\'s', 
-        img: 'images/mcdonald.jpeg', 
-        pay: 'R1350-1750/week'
-    },
-    {
-        name: 'KFC', 
-        img: 'images/KFC.png', 
-        pay: 'R1400-1800/week'
-    },
-    {
-        name: 'Pick n Pay', 
-        img: 'images/Pick N Pay.png', 
-        pay: 'R1400-1800/week'
-    },
-    {
-        name: 'Pep Stores', 
-        img: 'images/pep.png', 
-        pay: 'R1300-1700/week'
-    },
-    {
-        name: 'Shoprite', 
-        img: 'images/shoprite.png', 
-        pay: 'R1250-1650/week'
-    },
-    {
-        name: 'Mr Price', 
-        img: 'images/mrprice.png', 
-        pay: 'R1350-1750/week'
-    },
-    {
-        name: 'Checkers', 
-        img: 'images/checkers.png', 
-        pay: 'R1400-1800/week'
-    },
-    {
-        name: 'Dis-Chem', 
-        img: 'images/dischem.jpeg', 
-        pay: 'R1450-1850/week'
-    },
-    {
-        name: 'Edgars', 
-        img: 'images/edgars.png', 
-        pay: 'R1300-1700/week'
-    },
-    {
-        name: 'Spar', 
-        img: 'images/spar.png', 
-        pay: 'R1350-1750/week'
-    },
-    {
-        name: 'Truworths', 
-        img: 'images/truworths.png', 
-        pay: 'R1400-1800/week'
-    },
-    {
-        name: 'Wimpy', 
-        img: 'images/wimpy.png', 
-        pay: 'R1300-1700/week'
-    }
-];
+        // Allow pressing Enter to submit password
+        document.getElementById('passwordInput').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
 
-// Store applicant data
-let applicantData = null;
-
-// TAB SWITCHER - FIXED
-function showTab(tab) {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    document.getElementById(tab).classList.add('active');
-    
-    // Update location display when switching to search tab
-    if (tab === 'search') {
-        document.getElementById('search-location').textContent = document.getElementById('location-text').textContent;
-    }
-}
-
-// GET USER LOCATION
-function getUserLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-            function(position) {
-                const lat = position.coords.latitude;
-                const lng = position.coords.longitude;
-                
-                // Simulate getting location name (in real app, use reverse geocoding API)
-                const locations = [
-                    "Johannesburg Central", "Cape Town CBD", "Durban North", 
-                    "Pretoria East", "Port Elizabeth", "Bloemfontein"
-                ];
-                const randomLocation = locations[Math.floor(Math.random() * locations.length)];
-                document.getElementById('location-text').textContent = `Stores near ${randomLocation}`;
-                document.getElementById('search-location').textContent = `Stores near ${randomLocation}`;
+        // STORE DATA WITH LOCAL IMAGES
+        const storeData = [
+            {
+                name: 'Clicks',
+                img: 'images/clicks.png',
+                pay: 'R1400-1800/week'
             },
-            function(error) {
-                // If location access denied, use a default location
+            {
+                name: 'McDonald\'s',
+                img: 'images/mcdonald.jpeg',
+                pay: 'R1350-1750/week'
+            },
+            {
+                name: 'KFC',
+                img: 'images/KFC.png',
+                pay: 'R1400-1800/week'
+            },
+            {
+                name: 'Pick n Pay',
+                img: 'images/Pick N Pay.png',
+                pay: 'R1400-1800/week'
+            },
+            {
+                name: 'Pep Stores',
+                img: 'images/pep.png',
+                pay: 'R1300-1700/week'
+            },
+            {
+                name: 'Shoprite',
+                img: 'images/shoprite.png',
+                pay: 'R1250-1650/week'
+            },
+            {
+                name: 'Mr Price',
+                img: 'images/mrprice.png',
+                pay: 'R1350-1750/week'
+            },
+            {
+                name: 'Checkers',
+                img: 'images/checkers.png',
+                pay: 'R1400-1800/week'
+            },
+            {
+                name: 'Dis-Chem',
+                img: 'images/dischem.jpeg',
+                pay: 'R1450-1850/week'
+            },
+            {
+                name: 'Edgars',
+                img: 'images/edgars.png',
+                pay: 'R1300-1700/week'
+            },
+            {
+                name: 'Spar',
+                img: 'images/spar.png',
+                pay: 'R1350-1750/week'
+            },
+            {
+                name: 'Truworths',
+                img: 'images/truworths.png',
+                pay: 'R1400-1800/week'
+            },
+            {
+                name: 'Wimpy',
+                img: 'images/wimpy.png',
+                pay: 'R1300-1700/week'
+            }
+        ];
+
+        // Store applicant data
+        let applicantData = null;
+
+        // TAB SWITCHER - FIXED
+        function showTab(tab) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(tab).classList.add('active');
+
+            // Update location display when switching to search tab
+            if (tab === 'search') {
+                document.getElementById('search-location').textContent = document.getElementById('location-text').textContent;
+            }
+        }
+
+        // GET USER LOCATION
+        function getUserLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function (position) {
+                        const lat = position.coords.latitude;
+                        const lng = position.coords.longitude;
+
+                        // Simulate getting location name (in real app, use reverse geocoding API)
+                        const locations = [
+                            "Johannesburg Central", "Cape Town CBD", "Durban North",
+                            "Pretoria East", "Port Elizabeth", "Bloemfontein"
+                        ];
+                        const randomLocation = locations[Math.floor(Math.random() * locations.length)];
+                        document.getElementById('location-text').textContent = `Stores near ${randomLocation}`;
+                        document.getElementById('search-location').textContent = `Stores near ${randomLocation}`;
+                    },
+                    function (error) {
+                        // If location access denied, use a default location
+                        document.getElementById('location-text').textContent = "Stores in major cities across South Africa";
+                        document.getElementById('search-location').textContent = "Stores in major cities across South Africa";
+                    }
+                );
+            } else {
                 document.getElementById('location-text').textContent = "Stores in major cities across South Africa";
                 document.getElementById('search-location').textContent = "Stores in major cities across South Africa";
             }
-        );
-    } else {
-        document.getElementById('location-text').textContent = "Stores in major cities across South Africa";
-        document.getElementById('search-location').textContent = "Stores in major cities across South Africa";
-    }
-}
+        }
 
-// RANDOMIZE JOBS
-function randomizeJobs() {
-    const resultsDiv = document.getElementById("results");
-    resultsDiv.innerHTML = '<p><i class="fas fa-spinner fa-spin"></i> Searching for available jobs...</p>';
-    
-    // Simulate API delay
-    setTimeout(() => {
-        // Randomly select 8-12 active jobs
-        const activeCount = Math.floor(Math.random() * 5) + 8;
-        const shuffledStores = [...storeData].sort(() => 0.5 - Math.random());
-        const activeStores = shuffledStores.slice(0, activeCount);
-        
-        let html = "<h3>Available Positions</h3>";
-        
-        activeStores.forEach(store => {
-            html += `
-            <div class='store'>
-                <div class='store-info'>
-                    <div class='store-logo'>
-                        <img src='${store.img}' alt='${store.name} logo'>
-                    </div>
-                    <div>
-                        <div class='store-name'>${store.name}</div>
-                        <div class='pay-range'>${store.pay}</div>
-                    </div>
-                </div>
-                <span class='status active'><i class="fas fa-check-circle"></i> Hiring Now</span>
-            </div>`;
+        // RANDOMIZE JOBS
+        function randomizeJobs() {
+            const resultsDiv = document.getElementById("results");
+            resultsDiv.innerHTML = '<p><i class="fas fa-spinner fa-spin"></i> Searching for available jobs...</p>';
+
+            // Simulate API delay
+            setTimeout(() => {
+                // Randomly select 8-12 active jobs
+                const activeCount = Math.floor(Math.random() * 5) + 8;
+                const shuffledStores = [...storeData].sort(() => 0.5 - Math.random());
+                const activeStores = shuffledStores.slice(0, activeCount);
+
+                let html = "<h3>Available Positions</h3>";
+
+                activeStores.forEach(store => {
+                    html += `
+                    <div class='store'>
+                        <div class='store-info'>
+                            <div class='store-logo'>
+                                <img src='${store.img}' alt='${store.name} logo'>
+                            </div>
+                            <div>
+                                <div class='store-name'>${store.name}</div>
+                                <div class='pay-range'>${store.pay}</div>
+                            </div>
+                        </div>
+                        <span class='status active'><i class="fas fa-check-circle"></i> Hiring Now</span>
+                    </div>`;
+                });
+
+                // Add some inactive stores
+                const inactiveStores = shuffledStores.slice(activeCount, activeCount + 3);
+                inactiveStores.forEach(store => {
+                    html += `
+                    <div class='store'>
+                        <div class='store-info'>
+                            <div class='store-logo'>
+                                <img src='${store.img}' alt='${store.name} logo'>
+                            </div>
+                            <div>
+                                <div class='store-name'>${store.name}</div>
+                                <div class='pay-range'>${store.pay}</div>
+                            </div>
+                        </div>
+                        <span class='status inactive'><i class="fas fa-times-circle"></i> No Openings</span>
+                    </div>`;
+                });
+
+                resultsDiv.innerHTML = html;
+            }, 1000);
+        }
+
+        // SUBMIT APPLICATION
+        function submitApplication() {
+            // Simple form validation
+            const fullname = document.getElementById('fullname').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const position = document.getElementById('position').value;
+
+            if (!fullname || !email || !phone || !address || !position) {
+                alert('Please fill in all required fields before submitting.');
+                return;
+            }
+
+            // Store applicant data
+            applicantData = {
+                fullname: fullname,
+                email: email,
+                phone: phone,
+                address: address,
+                position: position,
+                timestamp: new Date().toISOString()
+            };
+
+            // Create WhatsApp message
+            const message = `Job Application Submission%0A%0A` +
+                `Full Name: ${fullname}%0A` +
+                `Email: ${email}%0A` +
+                `Phone: ${phone}%0A` +
+                `Address: ${address}%0A` +
+                `Preferred Position: ${position}%0A%0A` +
+                `Please provide payment details for the R500 application deposit.`;
+
+            // Open WhatsApp with pre-filled message to 0842745447
+            window.open(`https://wa.me/27842745447?text=${message}`, '_blank');
+
+            // Show success message
+            alert("Application submitted successfully!\n\nYou've been redirected to WhatsApp to complete your application.\n\nPlease send your application details and wait for payment instructions.\n\nAfter making payment, return to the website to submit your proof of payment.");
+
+            // Reset form
+            document.getElementById('fullname').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('phone').value = '';
+            document.getElementById('address').value = '';
+            document.getElementById('position').value = '';
+        }
+
+        // SUBMIT PAYMENT PROOF
+        function submitPaymentProof() {
+            const applicantName = document.getElementById('applicant-name').value;
+            const applicantPhone = document.getElementById('applicant-phone').value;
+            const paymentDate = document.getElementById('payment-date').value;
+            const paymentMethod = document.getElementById('payment-method').value;
+            const referenceNumber = document.getElementById('reference-number').value;
+
+            if (!applicantName || !applicantPhone || !paymentDate || !paymentMethod || !referenceNumber) {
+                alert('Please fill in all required fields before submitting.');
+                return;
+            }
+
+            // Show success message
+            alert("Payment proof submitted successfully!\n\nYour application will now be processed.\n\nYou will receive a confirmation email within 24 hours with interview details at your nearest store location.");
+
+            // Reset form
+            document.getElementById('applicant-name').value = '';
+            document.getElementById('applicant-phone').value = '';
+            document.getElementById('payment-date').value = '';
+            document.getElementById('payment-method').value = '';
+            document.getElementById('reference-number').value = '';
+            document.getElementById('payment-proof-file').value = '';
+
+            // Return to home
+            showTab('home');
+        }
+
+        // VIEW APPLICANT DATA
+        function viewApplicantData() {
+            const display = document.getElementById('applicant-data-display');
+            if (applicantData) {
+                display.textContent = JSON.stringify(applicantData, null, 2);
+            } else {
+                display.textContent = "No application data submitted yet.";
+            }
+        }
+
+        // Initialize location on page load
+        window.addEventListener('load', function () {
+            getUserLocation();
         });
-        
-        // Add some inactive stores
-        const inactiveStores = shuffledStores.slice(activeCount, activeCount + 3);
-        inactiveStores.forEach(store => {
-            html += `
-            <div class='store'>
-                <div class='store-info'>
-                    <div class='store-logo'>
-                        <img src='${store.img}' alt='${store.name} logo'>
-                    </div>
-                    <div>
-                        <div class='store-name'>${store.name}</div>
-                        <div class='pay-range'>${store.pay}</div>
-                    </div>
-                </div>
-                <span class='status inactive'><i class="fas fa-times-circle"></i> No Openings</span>
-            </div>`;
-        });
-        
-        resultsDiv.innerHTML = html;
-    }, 1000);
-}
-
-// GO TO DEPOSIT TAB
-function goDeposit() {
-    // Simple form validation
-    const fullname = document.getElementById('fullname').value;
-    const email = document.getElementById('email').value;
-    const phone = document.getElementById('phone').value;
-    const address = document.getElementById('address').value;
-    const position = document.getElementById('position').value;
-    
-    if (!fullname || !email || !phone || !address || !position) {
-        alert('Please fill in all required fields before continuing.');
-        return;
-    }
-    
-    // Store applicant data
-    applicantData = {
-        fullname: fullname,
-        email: email,
-        phone: phone,
-        address: address,
-        position: position,
-        timestamp: new Date().toISOString()
-    };
-    
-    showTab('deposit');
-}
-
-// COMPLETE APPLICATION
-function finishApp() {
-    // Simple payment form validation
-    const cardNumber = document.getElementById('card-number').value;
-    const expiry = document.getElementById('expiry').value;
-    const cvv = document.getElementById('cvv').value;
-    const cardName = document.getElementById('card-name').value;
-    
-    if (!cardNumber || !expiry || !cvv || !cardName) {
-        alert('Please fill in all payment details to complete the application.');
-        return;
-    }
-    
-    // Show success message
-    alert("Payment successful! Your R500 deposit has been processed.\n\nYour application has been submitted and will be processed within 24 hours.\n\nYou will receive a confirmation email shortly with interview details at your nearest store location.");
-    
-    // Reset form and return to home
-    document.getElementById('fullname').value = '';
-    document.getElementById('email').value = '';
-    document.getElementById('phone').value = '';
-    document.getElementById('address').value = '';
-    document.getElementById('position').value = '';
-    document.getElementById('card-number').value = '';
-    document.getElementById('expiry').value = '';
-    document.getElementById('cvv').value = '';
-    document.getElementById('card-name').value = '';
-    
-    showTab('home');
-}
-
-// VIEW APPLICANT DATA
-function viewApplicantData() {
-    const display = document.getElementById('applicant-data-display');
-    if (applicantData) {
-        display.textContent = JSON.stringify(applicantData, null, 2);
-    } else {
-        display.textContent = "No application data submitted yet.";
-    }
-}
-
-// Initialize location on page load
-window.addEventListener('load', function() {
-    getUserLocation();
-});
-</script>
+    </script>
 
 </body>
 </html>
